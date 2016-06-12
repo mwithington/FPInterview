@@ -1,0 +1,144 @@
+<html ng-app="mainApp" >
+    <head>
+        <title>Project for Fetch Park</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		
+		
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		
+		<link rel="stylesheet" href="http://jtblin.github.io/angular-chart.js/dist/angular-chart.css" />
+		<script src="http://jtblin.github.io/angular-chart.js/bower_components/Chart.js/Chart.js"></script>
+		<script src="http://jtblin.github.io/angular-chart.js/dist/angular-chart.js"></script>
+		
+		<link rel="stylesheet" href="/css/styles.css">
+		
+		<script src="core.js"></script>
+     
+    </head>
+    <body ng-controller="mainCtrl">
+	
+	<h1 style = "padding-left:50%">Lot status </h1>
+	
+	
+        <div class = "col-md-6" id = "chart">
+		<canvas id="pie" class="chart chart-pie"
+			chart-data="data" chart-labels="labels">
+		</canvas> 
+		
+		</div>
+		
+        <div class = "col-md-6" id = "table">
+		
+			<table id = "myTable" class = "table table-striped">
+				<thead>
+				<td>State: </td>
+				<td>Plate: </td>
+				<td>Time: </td>
+				<td>Type: </td>
+				<td>Remove:</td>
+				</thead>
+				
+				<tbody>
+				
+				<tr ng-repeat = "vehicle in tableData track by $index">
+					<td>{{vehicle.State}}</td>
+					<td>{{vehicle.Plate}}</td>
+					<td>{{vehicle.Time | date : "HH:mm:ss"}} {{vehicle.DateT | date:"MM/dd/yyyy"}}</td>
+					<td>{{vehicle.Type}}</td>
+					<td><button ng-disable="emptySpace <= 0" type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal1" ng-click = "currentCar($index)">delete</button></td>
+				</tr>
+				
+				
+				</tbody>
+				
+				
+			
+			</table>
+		
+		</div>
+		
+	
+		<button ng-disable="emptySpace <= 0" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add new vehicle</button>
+
+  <!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">New Vehicle</h4>
+        </div>
+        <div class="modal-body">
+		<form ng-submit ="sendVehicle()">
+		 State: <input type="text" id="state" placeholder="Type Here" class = "form-control" ng-model="stateM.State"><br>
+		 Plate: <input type="text" id="Plate" placeholder="Type Here" class = "form-control" ng-model="plateM.Plate"><br>
+		 Time:  <input type="time" id="Time"  class = "form-control" ng-model="timeM.Time"><br>
+		 Date:  <input type="date" id="Date"  class = "form-control" ng-model="dateM.DateT"><br>
+		 <div class = "form-group">
+		 <label for = "Type" > Select type:</label>
+		  <select id="Type" class="form-control" ng-model="typeM.Type">
+					<option value="Regular">Regular</option>
+					<option value="Valet">Valet</option>
+					<option value="Term">Term</option>
+		 
+		 </select>
+		 <div><br>
+		 <button type= "submit" class="btn btn-default"> Add new Vehicle</button> <br>
+		</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+		  
+        </div>
+      </div>
+      
+    </div>
+  </div>
+		
+		</div>
+		</div>
+		
+		
+		
+		  <!-- Modal -->
+	<div class="modal fade" id="myModal1" role="dialog">
+		<div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Remove Vehicle</h4>
+        </div>
+        <div class="modal-body">
+		<h1> Are you sure you want to erase vehicle?</h1>
+		 <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+		
+			<button class="btn btn-danger" ng-click="deleteCar()"> Delete</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		  
+        </div>
+      </div>
+      
+    </div>
+  </div>
+		
+		</div>
+		</div>
+		
+		
+		
+		
+		
+    </body>
+</html>
+

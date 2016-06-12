@@ -1,0 +1,12 @@
+{
+  "name"         : "interview-project",
+  "version"      : "0.0.0",
+  "description"  : "This is the application meant for Fetch Park",
+  "main"         : "server.js",
+  "author"       : "Michael Withington",
+  "dependencies" : {
+    "body-parser"    : "^1.4.3",
+    "express"        : "^4.13.4",
+    "method-override": "^2.1.3"
+  }
+}

@@ -1,0 +1,1 @@
+{"Vehicles":[{"State":"MA","Plate":"12345678","Time":"8:30 AM","Type":"Regular"},{"State":"NH","Plate":"98765432","Time":"11:45 AM","Type":"Vallet"},{"State":"","Plate":"","Time":"","Type":""}]}
